@@ -34,9 +34,13 @@ export const register = async (req: Request, res: Response) => {
     });
 
     //token
-    const token = jwt.sign({ user_id: user._id, email }, "Mrityunjay", {
-      expiresIn: "2h",
-    });
+    const token = jwt.sign(
+      { user_id: user._id, email },
+      process.env.SECRET_KEY || "",
+      {
+        expiresIn: "2h",
+      }
+    );
 
     res.status(201).json({ success: true, user, token });
   } catch (e) {
@@ -57,9 +61,13 @@ export const login = async (req: Request, res: Response) => {
 
     if (user && (await bcrypt.compare(password, user.password))) {
       //token
-      const token = jwt.sign({ user_id: user._id, email }, "Mrityunjay", {
-        expiresIn: "2h",
-      });
+      const token = jwt.sign(
+        { user_id: user._id, email },
+        process.env.SECRET_KEY || "",
+        {
+          expiresIn: "2h",
+        }
+      );
 
       // Setting Up cookies
       const options = {

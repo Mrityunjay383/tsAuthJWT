@@ -18,7 +18,7 @@ export const valToken = async (
     const token = authHeaderVal.replace("Bearer ", ""); //replacing Bearer from token if getting from header
 
     //verifying token with the secret key
-    req.userData = jwt.verify(token, "Mrityunjay");
+    req.userData = jwt.verify(token, process.env.SECRET_KEY || "");
     next();
   } catch (e) {
     return res.status(401).json({
