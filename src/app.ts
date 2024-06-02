@@ -17,8 +17,7 @@ app.use(cookieParser());
 app.use(
     cors<Request>({
         origin: [
-            "http://localhost:3000",
-            "https://fb-helpdesk-mrityunjay.netlify.app",
+            "http://localhost:3000"        
         ], //change origin based on domain main of the application
         optionsSuccessStatus: 200,
         credentials: true,
