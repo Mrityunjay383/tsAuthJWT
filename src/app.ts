@@ -1,6 +1,8 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+require("./config/database").connect();
+
 import express, { Request,Application } from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
